@@ -66,7 +66,7 @@ defmodule DemonPizzaWeb.CoreComponents do
               phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
               phx-key="escape"
               phx-click-away={JS.exec("data-cancel", to: "##{@id}")}
-              class="shadow-zinc-700/10 ring-zinc-700/10 relative hidden rounded-2xl bg-white p-14 shadow-lg ring-1 transition"
+              class="shadow-zinc-700/10 ring-zinc-700/10 relative hidden rounded-2xl p-14 shadow-lg ring-1 transition"
             >
               <div class="absolute top-6 right-5">
                 <button
@@ -202,7 +202,7 @@ defmodule DemonPizzaWeb.CoreComponents do
   def simple_form(assigns) do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
-      <div class="mt-10 space-y-8 bg-white">
+      <div class="mt-10 space-y-8">
         <%= render_slot(@inner_block, f) %>
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
           <%= render_slot(action, f) %>
@@ -231,8 +231,8 @@ defmodule DemonPizzaWeb.CoreComponents do
     <button
       type={@type}
       class={[
-        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
-        "text-sm font-semibold leading-6 text-white active:text-white/80",
+        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-300/30 dark:bg-zinc-800/50 hover:bg-white dark:hover:bg-zinc-800 hover:shadow-md py-2 px-3",
+        "text-sm font-semibold leading-6 text-zinc-800 dark:text-zinc-300 active:text-white/80",
         @class
       ]}
       {@rest}
@@ -310,7 +310,7 @@ defmodule DemonPizzaWeb.CoreComponents do
 
     ~H"""
     <div>
-      <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
+      <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
         <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
         <input
           type="checkbox"
@@ -335,7 +335,7 @@ defmodule DemonPizzaWeb.CoreComponents do
       <select
         id={@id}
         name={@name}
-        class="mt-2 block w-full rounded-md border border-gray-300 bg-white shadow-sm focus:border-zinc-400 focus:ring-0 sm:text-sm"
+        class="mt-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-zinc-400 focus:ring-0 sm:text-sm"
         multiple={@multiple}
         {@rest}
       >
@@ -377,8 +377,9 @@ defmodule DemonPizzaWeb.CoreComponents do
         id={@id}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
+          "mt-2 block w-full rounded-lg text-zinc-900 dark:text-zinc-100 dark:bg-zinc-800 focus:ring-0 sm:text-sm sm:leading-6",
+          @errors == [] &&
+            "border-zinc-300 dark:border-zinc-600 focus:border-zinc-400 dark:focus:border-zinc-50",
           @errors != [] && "border-rose-400 focus:border-rose-400"
         ]}
         {@rest}
@@ -396,7 +397,7 @@ defmodule DemonPizzaWeb.CoreComponents do
 
   def label(assigns) do
     ~H"""
-    <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800">
+    <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800 dark:text-zinc-200">
       <%= render_slot(@inner_block) %>
     </label>
     """
@@ -429,10 +430,10 @@ defmodule DemonPizzaWeb.CoreComponents do
     ~H"""
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
-        <h1 class="text-lg font-semibold leading-8 text-zinc-800">
+        <h1 class="text-lg font-semibold leading-8 text-zinc-800 dark:text-zinc-200">
           <%= render_slot(@inner_block) %>
         </h1>
-        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-zinc-600">
+        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
           <%= render_slot(@subtitle) %>
         </p>
       </div>
@@ -644,6 +645,34 @@ defmodule DemonPizzaWeb.CoreComponents do
     |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})
     |> JS.remove_class("overflow-hidden", to: "body")
     |> JS.pop_focus()
+  end
+
+  def show_mobile_nav(js \\ %JS{}) do
+    JS.show(js,
+      to: "#mobile-nav",
+      transition: {"transition-all transform ease-in duration-200", "opacity-0", "opacity-100"}
+    )
+    |> JS.show(
+      to: "#mobile-nav-links",
+      time: 300,
+      transition:
+        {"transition-all transform linear duration-300", "opacity-0 -translate-y-10",
+         "opacity-100  translate-y-0"}
+    )
+  end
+
+  def hide_mobile_nav(js \\ %JS{}) do
+    JS.hide(js,
+      to: "#mobile-nav",
+      transition: {"transition-all transform ease-in duration-200", "opacity-100", "opacity-0"}
+    )
+    |> JS.hide(
+      to: "#mobile-nav-links",
+      time: 300,
+      transition:
+        {"transition-all transform linear duration-300", "opacity-100 translate-y-0",
+         "opacity-0  -translate-y-10"}
+    )
   end
 
   @doc """

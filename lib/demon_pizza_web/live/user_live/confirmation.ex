@@ -1,4 +1,4 @@
-defmodule DemonPizzaWeb.UserConfirmationLive do
+defmodule DemonPizzaWeb.UserLive.Confirmation do
   use DemonPizzaWeb, :live_view
 
   alias DemonPizza.Users

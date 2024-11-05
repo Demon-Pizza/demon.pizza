@@ -1,4 +1,4 @@
-defmodule DemonPizzaWeb.UserSettingsLive do
+defmodule DemonPizzaWeb.UserLive.Settings do
   use DemonPizzaWeb, :live_view
 
   alias DemonPizza.Users

@@ -1,4 +1,4 @@
-defmodule DemonPizzaWeb.UserLoginLive do
+defmodule DemonPizzaWeb.UserLive.Login do
   use DemonPizzaWeb, :live_view
 
   def render(assigns) do
@@ -21,7 +21,10 @@ defmodule DemonPizzaWeb.UserLoginLive do
 
         <:actions>
           <.input field={@form[:remember_me]} type="checkbox" label="Keep me logged in" />
-          <.link href={~p"/users/reset_password"} class="text-sm font-semibold">
+          <.link
+            href={~p"/users/reset_password"}
+            class="text-sm font-semibold text-zinc-900 dark:text-zinc-100"
+          >
             Forgot your password?
           </.link>
         </:actions>

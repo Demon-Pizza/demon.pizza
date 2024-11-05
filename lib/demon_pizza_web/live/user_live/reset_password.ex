@@ -1,4 +1,4 @@
-defmodule DemonPizzaWeb.UserResetPasswordLive do
+defmodule DemonPizzaWeb.UserLive.ResetPassword do
   use DemonPizzaWeb, :live_view
 
   alias DemonPizza.Users

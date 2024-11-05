@@ -1,4 +1,4 @@
-defmodule DemonPizzaWeb.UserForgotPasswordLive do
+defmodule DemonPizzaWeb.UserLive.ForgotPassword do
   use DemonPizzaWeb, :live_view
 
   alias DemonPizza.Users
@@ -19,7 +19,7 @@ defmodule DemonPizzaWeb.UserForgotPasswordLive do
           </.button>
         </:actions>
       </.simple_form>
-      <p class="text-center text-sm mt-4">
+      <p class="text-center text-sm mt-4 text-zinc-800 dark:text-zinc-200">
         <.link href={~p"/users/register"}>Register</.link>
         | <.link href={~p"/users/log_in"}>Log in</.link>
       </p>
