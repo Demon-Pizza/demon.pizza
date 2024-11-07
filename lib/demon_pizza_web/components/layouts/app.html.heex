@@ -29,6 +29,7 @@
       >
         Log out
       </.link>
+      <span class="ml-2"><.darkmode /></span>
     </div>
 
     <div :if={!@current_user} class="hidden lg:flex lg:gap-x-4">
@@ -45,6 +46,7 @@
       >
         Log in
       </.link>
+      <span class="ml-2"><.darkmode /></span>
     </div>
   </nav>
   <div
@@ -63,7 +65,9 @@
       </div>
       <div id="mobile-nav-links" class="opacity-0 hidden -translate-y-10 mt-6 flow-root">
         <div class="-my-6 divide-y divide-zinc-500/10">
-          <div class="space-y-2 py-6"></div>
+          <div class="space-y-2 py-6">
+            <span class="block mt-2"><.darkmode /></span>
+          </div>
           <div :if={!@current_user} class="py-6">
             <.link
               href={~p"/users/register"}

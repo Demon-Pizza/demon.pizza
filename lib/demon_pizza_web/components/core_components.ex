@@ -19,6 +19,18 @@ defmodule DemonPizzaWeb.CoreComponents do
   alias Phoenix.LiveView.JS
   import DemonPizzaWeb.Gettext
 
+  def darkmode(assigns) do
+    ~H"""
+    <button
+      phx-click={JS.dispatch("toggle-darkmode")}
+      class="text-zinc-900 dark:text-zinc-100 flex items-center"
+    >
+      <.icon name="hero-sun" class="dark:hidden w-6 h-6" />
+      <.icon name="hero-moon" class="hidden dark:inline-block w-6 h-6" />
+    </button>
+    """
+  end
+
   @doc """
   Renders a modal.
 
