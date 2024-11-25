@@ -1,16 +1,18 @@
-<!-- HEADER -->
-<header class="absolute inset-x-0 top-0 z-50">
-  <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+<header class="z-50">
+  <nav
+    class="mx-auto max-w-4xl flex items-center justify-between px-6 lg:px-0 pt-6"
+    aria-label="Global"
+  >
     <div class="flex lg:flex-1">
       <a href="/" class="-m-1.5 p-1.5 text-zinc-800 dark:text-zinc-200">
         <span class="sr-only">Demon Pizza</span> 🍕 😈 ⛧
       </a>
     </div>
     <div class="flex lg:hidden">
-      <.button phx-click={show_mobile_nav()}>
+      <button phx-click={show_mobile_nav()}>
         <span class="sr-only">Open main menu</span>
         <.icon name="hero-bars-3 text-zinc-800 dark:text-zinc-200" />
-      </.button>
+      </button>
     </div>
     <div :if={@current_user} class="hidden lg:flex lg:gap-x-4">
       <span class="text-[0.8125rem] leading-6 text-zinc-800 dark:text-zinc-200 font-semibold hover:text-zinc-700">
@@ -58,10 +60,10 @@
         <a href="#" class="-m-1.5 p-1.5 text-zinc-800 dark:text-zinc-200">
           <span class="sr-only">Demon Pizza</span> 🍕 😈 ⛧
         </a>
-        <.button phx-click={hide_mobile_nav()} class="rounded-md">
+        <button phx-click={hide_mobile_nav()} class="rounded-md">
           <span class="sr-only">Close menu</span>
           <.icon name="hero-x-mark" class="h-6 h-6 text-zinc-800 dark:text-zinc-200" />
-        </.button>
+        </button>
       </div>
       <div id="mobile-nav-links" class="opacity-0 hidden -translate-y-10 mt-6 flow-root">
         <div class="-my-6 divide-y divide-zinc-500/10">
@@ -107,9 +109,9 @@
   </div>
 </header>
 
-<main class="px-4 py-20 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-2xl">
+<main class="px-6 py-6 sm:py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-4xl">
     <.flash_group flash={@flash} />
-    <%= @inner_content %>
+    <%= render_slot(@inner_block) %>
   </div>
 </main>

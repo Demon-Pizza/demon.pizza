@@ -39,8 +39,7 @@ defmodule DemonPizzaWeb do
   def controller do
     quote do
       use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: DemonPizzaWeb.Layouts]
+        formats: [:html, :json]
 
       import Plug.Conn
       import DemonPizzaWeb.Gettext
@@ -51,8 +50,8 @@ defmodule DemonPizzaWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView,
-        layout: {DemonPizzaWeb.Layouts, :app}
+      use Phoenix.LiveView
+      import DemonPizzaWeb.LayoutComponents
 
       unquote(html_helpers())
     end
@@ -69,6 +68,7 @@ defmodule DemonPizzaWeb do
   def html do
     quote do
       use Phoenix.Component
+      import DemonPizzaWeb.LayoutComponents
 
       # Import convenience functions from controllers
       import Phoenix.Controller,

@@ -1,8 +1,35 @@
-<.flash_group flash={@flash} />
+<.layout current_user={@current_user} flash={@flash}>
+  <.flash_group flash={@flash} />
+  <div class="relative isolate bg-zinc-200 dark:bg-zinc-800 px-6 py-14 shadow-xl rounded-3xl sm:px-14 custom-background sm:cm-8">
+    <img class="hidden dark:block mx-auto w-40" src={~p"/images/demon_logo_white.png"} />
+    <img class="block dark:hidden mx-auto w-40" src={~p"/images/demon_logo.png"} />
+    <h2 class="mt-4 mx-auto max-w-3xl text-center text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl">
+      Who's got the best pizza in town?
+    </h2>
+    <p class="mx-auto my-6 text-center text-lg text-zinc-800 dark:text-zinc-200">
+      Demon Pizza lets users rank their favorite pizzerias in their area
+    </p>
+    <div class="mx-auto flex max-w-md gap-x-4 mt-8">
+      <label for="location" class="sr-only">Location</label>
+      <input
+        id="location"
+        name="location"
+        type="text"
+        class="min-w-0 flex-auto rounded-md border-0 bg-purple-100 dark:bg-purple-400/10 px-3.5 py-2 text-purple-700 dark:text-purple-400 shadow-sm ring-1 ring-inset ring-purple-700/30 dark:ring-purple-400/30 focus:ring-2 focus:ring-inset focus:ring-purple-700 dark:focus:ring-purple-400 sm:text-sm/6 focus:shadow-lg"
+        placeholder="Enter a city or town"
+      />
+    </div>
+  </div>
 
-<img class="hidden dark:block mx-auto w-40" src={~p"/images/demon_logo_white.png"} />
-<img class="block dark:hidden mx-auto w-40" src={~p"/images/demon_logo.png"} />
+  <style>
+    .dark .custom-background {
+      background-image: radial-gradient(circle at 50% 210%, #7775D6 10%, rgba(233, 53, 193, 0) 70%);
+      background-repeat: no-repeat;
+    }
 
-<h1 class="text-balance text-5xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-7xl">
-  HOME
-</h1>
+    .custom-background {
+      background-image: radial-gradient(circle at 50% 200%, #FAAFA5 20%, rgba(256, 256, 256, 0) 70%);
+      background-repeat: no-repeat;
+    }
+  </style>
+</.layout>
