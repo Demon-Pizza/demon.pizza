@@ -17,12 +17,6 @@ defmodule DemonPizzaWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", DemonPizzaWeb do
-    pipe_through :browser
-
-    get "/", PageController, :home
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", DemonPizzaWeb do
   #   pipe_through :api
@@ -80,6 +74,7 @@ defmodule DemonPizzaWeb.Router do
       on_mount: [{DemonPizzaWeb.UserAuth, :mount_current_user}] do
       live "/users/confirm/:token", UserLive.Confirmation, :edit
       live "/users/confirm", UserLive.ConfirmationInstructions, :new
+      live "/", HomeLive.Index, :index
     end
   end
 end

@@ -43,7 +43,7 @@ defmodule DemonPizzaWeb.CoreComponents do
   JS commands may be passed to the `:on_cancel` to configure
   the closing/cancel event, for example:
 
-      <.modal id="confirm" on_cancel={JS.navigate(~p"/posts")}>
+      <.modal id="confirm" on_cancel={JS.navigate(~p"/pizzerias")}>
         This is another modal.
       </.modal>
 
@@ -564,7 +564,7 @@ defmodule DemonPizzaWeb.CoreComponents do
 
   ## Examples
 
-      <.back navigate={~p"/posts"}>Back to posts</.back>
+      <.back navigate={~p"/pizzerias"}>Back to pizzerias</.back>
   """
   attr :navigate, :any, required: true
   slot :inner_block, required: true
